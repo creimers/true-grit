@@ -5,7 +5,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <header>True Grit</header>
         <main>{this.props.children}</main>
       </div>
     );
