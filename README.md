@@ -1,3 +1,10 @@
+# zoomable interface prototyping
+
+## links
+
+* `https://github.com/codrops/FullscreenLayoutPageTransitions`
+* `http://work.co/grid/`
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
