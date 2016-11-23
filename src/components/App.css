@@ -13,6 +13,7 @@
 }
 
 .GridItem{
+  cursor: pointer;
   position: relative;
   transition: all 0.5s ease-in-out;
 
@@ -31,6 +32,15 @@
   flex-direction: column;
 
   overflow: hidden;
+}
+
+.Grid.zoom > .GridItem:hot(.active) {
+  margin: 0;
+  height: 0px;
+}
+
+.Grid.zoom > .GridItem {
+  margin: 0;
 }
 
 .GridItem .GridItem {

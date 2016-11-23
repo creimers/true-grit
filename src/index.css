@@ -4,3 +4,8 @@ body, html {
   font-family: sans-serif;
   overflow-x: hidden;
 }
+
+body.y, html.y{
+  height: 100vh;
+  overflow-y: hidden;
+}

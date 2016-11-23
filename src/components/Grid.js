@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import GridItem from './GridItem'
 
+import classNames from 'classnames';
+
 
 class Grid extends Component {
 
@@ -63,8 +65,24 @@ class Grid extends Component {
       transform: this.getTranslate()
     }
 
+    const zoom = Object.keys(this.context.router.params).length
+
+    if (zoom){
+      document.body.classList.add('y')
+    }
+    else{
+      document.body.classList.remove('y')
+    }
+
+    let classes = classNames(
+      'Grid',
+      {
+        zoom: zoom
+      }
+    ) 
+
     return (
-      <div className="Grid" ref={(div) => this.container = div} style={style}>
+      <div className={classes} ref={(div) => this.container = div} style={style}>
         {
           Object.keys(this.state.grid).map((elm, index) => {
           return <GridItem
