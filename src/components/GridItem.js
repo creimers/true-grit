@@ -9,6 +9,7 @@ class GridItem extends Component {
   }
 
   activateGridItem(event) {
+    this.props.setActiveGridItemIndex(this.props.level, this.props.index)
 
     //level 0
     if (this.props.level === 0) {
@@ -61,11 +62,12 @@ class GridItem extends Component {
         {this.props.children.map((elm, index)=> {
           return (
           <GridItem
+            setActiveGridItemIndex={this.props.setActiveGridItemIndex}
             level={1}
             key={index}
+            index={index}
             parent={this.props.route}
             route={elm}
-            secondLevel={this.props.secondLevel}
             children={[]}
           />
           )
