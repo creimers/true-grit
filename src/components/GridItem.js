@@ -8,12 +8,7 @@ class GridItem extends Component {
     this.state = {}
   }
 
-  goToRoute(route) {
-    this.context.router.push(route)
-    event.stopPropagation();
-  }
-
-  goToGridItemRoute(event) {
+  activateGridItem(event) {
 
     //level 0
     if (this.props.level === 0) {
@@ -32,6 +27,11 @@ class GridItem extends Component {
     event.stopPropagation();
   }
 
+  goToParent(event) {
+    this.context.router.push(["", this.props.parent].join('/'))
+    event.stopPropagation();
+  }
+
   render () {
     const active = this.props.route === this.context.router.params[`level${this.props.level}`]
 
@@ -40,9 +40,21 @@ class GridItem extends Component {
       {active: active}
     )
 
+    let backButton
+    if (active) {
+      backButton = <span onClick={this.goToParent.bind(this)}>X</span>
+    }
+    else {
+      backButton = <span></span>
+    }
+
     return (
 
-      <div className={classes} onClick={this.goToGridItemRoute.bind(this)}>
+      <div className={classes} onClick={this.activateGridItem.bind(this)}>
+
+        <div className="backRow">
+          {backButton}  
+        </div>
 
         <h2>{this.props.route}</h2>
 
