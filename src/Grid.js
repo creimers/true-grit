@@ -17,19 +17,15 @@ class Grid extends Component {
     }
   }
   render () {
-    let firstLevel = this.props.location.pathname.split('/')[1]
-    let secondLevel = this.props.location.pathname.split('/')[2]
     return (
       <div className="Grid">
         {
           Object.keys(this.state.grid).map((elm, index) => {
           return <GridItem
             level={0}
-            parentRoute="/"
+            parent=""
             route={elm}
             key={index}
-            firstLevel={firstLevel}
-            secondLevel={secondLevel}
             children={this.state.grid[elm].children}
           />
           })
