@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute  } from 'react-router'
 
-import App from './App';
-import Grid from './Grid'
+import App from './components/App';
+import Grid from './components/Grid'
 
 import './index.css';
 
