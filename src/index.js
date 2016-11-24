@@ -7,7 +7,6 @@ import Grid from './components/Grid'
 
 import './index.css';
 
-
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>

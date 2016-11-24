@@ -4,12 +4,12 @@ import classNames from 'classnames';
 
 class GridItem extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      isInitiallyActive: false
-    }
-  }
+  //constructor(props) {
+    //super(props)
+    //this.state = {
+      //isInitiallyActive: false
+    //}
+  //}
 
   componentDidMount() {
     const active = this.props.route === this.context.router.params[`level${this.props.level}`]
@@ -22,19 +22,23 @@ class GridItem extends Component {
     //level 0
     if (this.props.level === 0) {
       this.context.router.push(["", this.props.route].join('/'))
+      this.props.setActiveGridItemIndex(this.props.level, this.props.index)
     }
 
     //level 1 and parent not active
     else if(this.props.level === 1 && this.context.router.params['level0'] !== this.props.parent) {
+      console.log('click on child of unactive parnet')
       this.context.router.push(["", this.props.parent].join('/'))
+      this.props.setActiveGridItemIndex(this.props.level - 1, this.props.parentIndex)
     }
 
     // level 1 and parent active
     else if(this.props.level === 1 && this.context.router.params['level0'] === this.props.parent) {
       this.context.router.push(["", this.props.parent, this.props.route].join('/'))
+      // TODO: implement this in the Grid component
+      this.props.setActiveGridItemIndex(this.props.level, this.props.index)
     }
     event.stopPropagation();
-    this.props.setActiveGridItemIndex(this.props.level, this.props.index)
   }
 
   goToParent(event) {
@@ -71,6 +75,7 @@ class GridItem extends Component {
           </div>
           {backButton}
         </header>
+
         <div className="GridItemInner">
 
           {this.props.children.map((elm, index)=> {
@@ -81,6 +86,7 @@ class GridItem extends Component {
               key={index}
               index={index}
               parent={this.props.route}
+              parentIndex={this.props.index}
               route={elm}
               children={[]}
             />

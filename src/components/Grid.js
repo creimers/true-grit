@@ -33,7 +33,6 @@ class Grid extends Component {
       activeGridItemRow: undefined,
       translateX: 0,
       translateY: 0,
-      width: 100,
       zoom: false
     }
   }
@@ -45,6 +44,7 @@ class Grid extends Component {
   }
 
   getTranslate(width, level, row, index) {
+
     if (width === 200 && level === 0 && index % 2 === 0) {
       return {
         translateX: 0,
@@ -58,6 +58,10 @@ class Grid extends Component {
         translateY: `-${row * 500}px`
       }
     }
+
+    // TODO: implement the next level
+    // TODO: can it be made (more) generic?
+
     return {translateX: 0, translateY: 0}
   }
 
@@ -71,7 +75,6 @@ class Grid extends Component {
       activeGridItemLevel: level,
       activeGridItemIndex: index,
       activeGridItemRow: row,
-      width: width,
       translateX: translate.translateX,
       translateY: translate.translateY,
       zoom: zoom
@@ -83,7 +86,6 @@ class Grid extends Component {
       activeGridItemLevel: undefined,
       activeGridItemIndex: undefined,
       activeGridItemRow: undefined,
-      width: 100,
       translateX: 0,
       translateY: 0,
       zoom: false
@@ -91,8 +93,10 @@ class Grid extends Component {
   }
 
   render () {
+    console.log(this.context.router.params)
+
     let style = {
-      width: `${this.state.width}%`,
+      width: `${this.getWidth()}%`,
       transform: `translate(${this.state.translateX}, ${this.state.translateY})`
     }
 
