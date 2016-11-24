@@ -62,7 +62,6 @@ class GridItem extends Component {
             <GridItem
               level={1}
               key={index}
-              index={index}
               parent={this.props.route}
               route={elm.route}
               children={[]}

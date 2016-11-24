@@ -11,18 +11,33 @@ class Grid extends Component {
     super(props)
 
     this.calculateTransform = this.calculateTransform.bind(this)
+    this.calculateWidth = this.calculateWidth.bind(this)
     this.getRouteItemMapping = this.getRouteItemMapping.bind(this)
-    this.getTransform = this.getTransform.bind(this)
-    this.getWidth = this.getWidth.bind(this)
   }
 
-  getWidth() {
+  /**
+  * calculates the transformation of the GridItem
+  * @return {array} returns this mapping
+  */
+  calculateWidth() {
     let params = this.context.router.params
     let width = Object.keys(params).length * 2 * 100 || 100
     return width
   }
 
-  getTransform(width, level, row, index) {
+  /**
+  * calculates the transformation of the GridItem
+  * @return {array} returns this mapping
+  */
+  calculateTransform() {
+    let routeItemMapping = this.getRouteItemMapping()
+    let width = this.calculateWidth()
+    let level = routeItemMapping.length > 0 ? routeItemMapping.length - 1 : null
+    let index = routeItemMapping.length > 0 ? routeItemMapping[routeItemMapping.length - 1].index : null
+    let row = index !== null ? Math.floor(index / 2) : null
+
+    // TODO: implement the next level
+    // TODO: can it be made (more) generic?
 
     if (width === 200 && level === 0 && index % 2 === 0) {
       return {
@@ -38,61 +53,51 @@ class Grid extends Component {
       }
     }
 
-    // TODO: implement the next level
-    // TODO: can it be made (more) generic?
-
     return {translateX: 0, translateY: 0}
   }
 
-  calculateTransform() {
-    const routeItemMapping = this.getRouteItemMapping()
 
-    let width = this.getWidth()
-    let level = routeItemMapping.length > 0 ? routeItemMapping.length - 1 : null
-    let index = routeItemMapping.length > 0 ? routeItemMapping[routeItemMapping.length - 1].index : null
-    const row = index !== null ? Math.floor(index / 2) : null
-
-    return this.getTransform(width, level, row, index)
-
-  }
-
+  /**
+  * maps the route params to the corresponding grid items
+  * @return {array} returns this mapping
+  */
   getRouteItemMapping() {
-    // TODO: make this functional
-    const routerParams = this.context.router.params
+    let routerParams = this.context.router.params
     let indexMapping = []
-    Object.keys(routerParams).forEach((levelKey, level) => {
 
+    let getItem = (levelKey, level) => {
       let previousElement = indexMapping[level - 1]
-
       if (previousElement) {
-        
           let itemIndex = previousElement.item.children.findIndex((e) => e.route === routerParams[levelKey])
-          indexMapping.push({
+          return {
             index: itemIndex,
             item: previousElement.item.children[itemIndex]
-          })
+          }
       }
-
       else {
-
         let itemIndex = this.props.grid.findIndex((e) => e.route === routerParams[levelKey])
-        indexMapping.push({
+        return {
           index: itemIndex,
           item: this.props.grid[itemIndex]
-        })
-
+        }
       }
+    }
+
+    Object.keys(routerParams).forEach((levelKey, level) => {
+      indexMapping.push(getItem(levelKey, level))
     })
+    
     return indexMapping
   }
 
   render () {
     let zoom = Object.keys(this.context.router.params).length
 
+    let width = this.calculateWidth()
     let transform = this.calculateTransform()
 
     let style = {
-      width: `${this.getWidth()}%`,
+      width: `${width}%`,
       transform: `translate(${transform.translateX}, ${transform.translateY})`
     }
 
@@ -119,7 +124,6 @@ class Grid extends Component {
               parent=""
               route={elm.route}
               key={index}
-              index={index}
               children={elm.children}
             />
           })
