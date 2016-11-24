@@ -58,6 +58,10 @@
   overflow-y: scroll;
 }
 
+/*.GridItem.active:has(.GridItem.active) > header > title{*/
+  /*display: none;*/
+/*}*/
+
 /*.Grid.zoom > .GridItem:not(.active) {*/
   /*margin: 0;*/
   /*height: 0px;*/
