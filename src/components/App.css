@@ -58,16 +58,17 @@
   right: 15px;
 }
 
-.GridItem.active > a {
-  color: white;
+.GridItem.active{
+  background-color: red;
+  border: 2px solid red;
+  height: 100vh;
+  margin: 0;
+  overflow-y: scroll;
+  width: 50%;
 }
 
-.GridItem.active{
-  border: 2px solid red;
-  background-color: red;
-  height: 100vh;
-  width: 50%;
-  margin: 0;
+.GridItem.active > a {
+  color: white;
 }
 
 .GridItem.active .GridItem.active{

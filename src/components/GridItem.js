@@ -53,25 +53,30 @@ class GridItem extends Component {
 
       <div className={classes} onClick={this.activateGridItem.bind(this)}>
 
-        <div className="backRow">
-          {backButton}  
+        <div className="GridItemInner">
+
+          <div className="backRow">
+            {backButton}  
+          </div>
+
+          <h2>{this.props.route}</h2>
+
+          {this.props.children.map((elm, index)=> {
+            return (
+            <GridItem
+              setActiveGridItemIndex={this.props.setActiveGridItemIndex}
+              level={1}
+              key={index}
+              index={index}
+              parent={this.props.route}
+              route={elm}
+              children={[]}
+            />
+            )
+          })}
+
         </div>
 
-        <h2>{this.props.route}</h2>
-
-        {this.props.children.map((elm, index)=> {
-          return (
-          <GridItem
-            setActiveGridItemIndex={this.props.setActiveGridItemIndex}
-            level={1}
-            key={index}
-            index={index}
-            parent={this.props.route}
-            route={elm}
-            children={[]}
-          />
-          )
-        })}
       </div>
     )
   }
