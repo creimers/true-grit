@@ -27,17 +27,39 @@
   background-color: white;
 
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  /*flex-direction: column;*/
 
   overflow: hidden;
 }
 
-.Grid.zoom > .GridItem:hot(.active) {
-  margin: 0;
-  height: 0px;
+.GridItem > header{
+  display: flex;
+  flex-shrink: 0;
 }
+
+.GridItem > header > .title{
+  display: flex;
+  flex-grow: 1;
+  /*align-items: center;*/
+  justify-content: center;
+}
+
+.GridItem > .GridItemInner {
+  /*width: 50%; */
+}
+
+.GridItem.active > .GridItemInner {
+  overflow-y: scroll;
+}
+
+/*.Grid.zoom > .GridItem:not(.active) {*/
+  /*margin: 0;*/
+  /*height: 0px;*/
+/*}*/
 
 .Grid.zoom > .GridItem {
   margin: 0;
@@ -63,7 +85,6 @@
   border: 2px solid red;
   height: 100vh;
   margin: 0;
-  overflow-y: scroll;
   width: 50%;
 }
 
