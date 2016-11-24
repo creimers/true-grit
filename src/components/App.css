@@ -50,6 +50,8 @@
 
 .GridItem > .GridItemInner {
   /*width: 50%; */
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .GridItem.active > .GridItemInner {
@@ -66,7 +68,8 @@
 }
 
 .GridItem .GridItem {
-  width: 80%;
+  /*width: 80%;*/
+  width: calc(50% - 10px);
 }
 
 .GridItem > a {
