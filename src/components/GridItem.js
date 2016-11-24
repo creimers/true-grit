@@ -3,14 +3,22 @@ import classNames from 'classnames';
 
 
 class GridItem extends Component {
+
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      isInitiallyActive: false
+    }
   }
 
-  activateGridItem(event) {
-    this.props.setActiveGridItemIndex(this.props.level, this.props.index)
+  componentDidMount() {
+    const active = this.props.route === this.context.router.params[`level${this.props.level}`]
+    if(active){
+      this.props.setActiveGridItemIndex(this.props.level, this.props.index)
+    }
+  }
 
+  routeGridItem(event) {
     //level 0
     if (this.props.level === 0) {
       this.context.router.push(["", this.props.route].join('/'))
@@ -26,10 +34,14 @@ class GridItem extends Component {
       this.context.router.push(["", this.props.parent, this.props.route].join('/'))
     }
     event.stopPropagation();
+    this.props.setActiveGridItemIndex(this.props.level, this.props.index)
   }
 
   goToParent(event) {
     this.context.router.push(["", this.props.parent].join('/'))
+    if(this.props.level === 0) {
+      this.props.resetGrid()
+    }
     event.stopPropagation();
   }
 
@@ -51,7 +63,7 @@ class GridItem extends Component {
 
     return (
 
-      <div className={classes} onClick={this.activateGridItem.bind(this)}>
+      <div className={classes} onClick={this.routeGridItem.bind(this)}>
 
         <div className="GridItemInner">
 
