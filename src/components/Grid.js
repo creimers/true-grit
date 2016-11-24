@@ -10,6 +10,7 @@ class Grid extends Component {
   constructor(props) {
     super(props)
 
+    this.calculateTranslate = this.calculateTranslate.bind(this)
     this.getTranslate = this.getTranslate.bind(this)
     this.getWidth = this.getWidth.bind(this)
     this.resetGrid = this.resetGrid.bind(this)
@@ -53,6 +54,11 @@ class Grid extends Component {
     return {translateX: 0, translateY: 0}
   }
 
+  calculateTranslate() {
+    const routerParams = this.context.router.params
+    const depth = routerParams.length // == level
+  }
+
   setActiveGridItemIndex(level, index) {
     const row = Math.floor(index / 2)
     const width = this.getWidth()
@@ -82,6 +88,8 @@ class Grid extends Component {
 
   render () {
     console.log(this.context.router.params)
+
+    this.calculateTranslate()
 
     let style = {
       width: `${this.getWidth()}%`,
