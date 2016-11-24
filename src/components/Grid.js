@@ -10,20 +10,10 @@ class Grid extends Component {
   constructor(props) {
     super(props)
 
-    this.calculateTranslate = this.calculateTranslate.bind(this)
-    this.getTranslate = this.getTranslate.bind(this)
+    this.calculateTransform = this.calculateTransform.bind(this)
+    this.getRouteItemMapping = this.getRouteItemMapping.bind(this)
+    this.getTransform = this.getTransform.bind(this)
     this.getWidth = this.getWidth.bind(this)
-    this.resetGrid = this.resetGrid.bind(this)
-    this.setActiveGridItemIndex = this.setActiveGridItemIndex.bind(this)
-
-    this.state = {
-      activeGridItemLevel: undefined,
-      activeGridItemIndex: undefined,
-      activeGridItemRow: undefined,
-      translateX: 0,
-      translateY: 0,
-      zoom: false
-    }
   }
 
   getWidth() {
@@ -32,7 +22,7 @@ class Grid extends Component {
     return width
   }
 
-  getTranslate(width, level, row, index) {
+  getTransform(width, level, row, index) {
 
     if (width === 200 && level === 0 && index % 2 === 0) {
       return {
@@ -54,49 +44,59 @@ class Grid extends Component {
     return {translateX: 0, translateY: 0}
   }
 
-  calculateTranslate() {
+  calculateTransform() {
+    const routeItemMapping = this.getRouteItemMapping()
+
+    let width = this.getWidth()
+    let level = routeItemMapping.length > 0 ? routeItemMapping.length - 1 : null
+    let index = routeItemMapping.length > 0 ? routeItemMapping[routeItemMapping.length - 1].index : null
+    const row = index !== null ? Math.floor(index / 2) : null
+
+    return this.getTransform(width, level, row, index)
+
+  }
+
+  getRouteItemMapping() {
+    // TODO: make this functional
     const routerParams = this.context.router.params
-    const depth = routerParams.length // == level
-  }
+    let indexMapping = []
+    Object.keys(routerParams).forEach((levelKey, level) => {
 
-  setActiveGridItemIndex(level, index) {
-    const row = Math.floor(index / 2)
-    const width = this.getWidth()
-    const translate = this.getTranslate(width, level, row, index)
-    const zoom = Object.keys(this.context.router.params).length
+      let previousElement = indexMapping[level - 1]
 
-    this.setState({
-      activeGridItemLevel: level,
-      activeGridItemIndex: index,
-      activeGridItemRow: row,
-      translateX: translate.translateX,
-      translateY: translate.translateY,
-      zoom: zoom
+      if (previousElement) {
+        
+          let itemIndex = previousElement.item.children.findIndex((e) => e.route === routerParams[levelKey])
+          indexMapping.push({
+            index: itemIndex,
+            item: previousElement.item.children[itemIndex]
+          })
+      }
+
+      else {
+
+        let itemIndex = this.props.grid.findIndex((e) => e.route === routerParams[levelKey])
+        indexMapping.push({
+          index: itemIndex,
+          item: this.props.grid[itemIndex]
+        })
+
+      }
     })
-  }
-
-  resetGrid() {
-    this.setState({
-      activeGridItemLevel: undefined,
-      activeGridItemIndex: undefined,
-      activeGridItemRow: undefined,
-      translateX: 0,
-      translateY: 0,
-      zoom: false
-    })
+    return indexMapping
   }
 
   render () {
-    console.log(this.context.router.params)
+    let zoom = Object.keys(this.context.router.params).length
 
-    this.calculateTranslate()
+    let transform = this.calculateTransform()
 
     let style = {
       width: `${this.getWidth()}%`,
-      transform: `translate(${this.state.translateX}, ${this.state.translateY})`
+      transform: `translate(${transform.translateX}, ${transform.translateY})`
     }
 
-    if (this.state.zoom){
+    if (zoom){
       document.body.classList.add('y')
     }
     else{
@@ -106,24 +106,22 @@ class Grid extends Component {
     let classes = classNames(
       'Grid',
       {
-        zoom: this.state.zoom
+        zoom: zoom
       }
     ) 
 
     return (
       <div className={classes} ref={(div) => this.container = div} style={style}>
         {
-          Object.keys(this.props.grid).map((elm, index) => {
-          return <GridItem
-            setActiveGridItemIndex={this.setActiveGridItemIndex}
-            resetGrid={this.resetGrid}
-            level={0}
-            parent=""
-            route={elm}
-            key={index}
-            index={index}
-            children={this.props.grid[elm].children}
-          />
+          this.props.grid.map((elm, index) => {
+            return <GridItem
+              level={0}
+              parent=""
+              route={elm.route}
+              key={index}
+              index={index}
+              children={elm.children}
+            />
           })
         }
       </div>

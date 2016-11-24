@@ -8,14 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      grid: {
-        'john': {children: ['walrus', 'nowhere man', 'help', 'imagine']},
-        'paul': {children: ['yesterday', 'black bird']},
-        'george': {children: ['while my guitar', 'here comes the sun']},
-        'ringo': {children: ['yellow submarine', 'with a little help from my friends']},
-      },
-
-      newGrid: [
+      grid: [
         {
           route: 'john',
           index: 0,
@@ -25,6 +18,16 @@ class App extends Component {
           route: 'paul',
           index: 1,
           children: [{route: 'yesterday', index: 0}, {route: 'black bird', index: 1}]
+        },
+        {
+          route: 'ringo',
+          index: 2,
+          children: [{route: 'yellow submarine', index: 0}, {route: 'boys', index: 1}]
+        },
+        {
+          route: 'george',
+          index: 3,
+          children: [{route: 'yellow submarine', index: 0}, {route: 'boys', index: 1}]
         }
       ]
 
