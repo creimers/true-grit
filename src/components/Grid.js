@@ -16,18 +16,6 @@ class Grid extends Component {
     this.setActiveGridItemIndex = this.setActiveGridItemIndex.bind(this)
 
     this.state = {
-      grid: {
-        'john': {children: ['walrus', 'nowhere man', 'help', 'imagine']},
-        'paul': {children: ['yesterday', 'black bird']},
-        'george': {children: ['while my guitar', 'here comes the sun']},
-        'ringo': {children: ['yellow submarine', 'with a little help from my friends']},
-        //'john': {children: []},
-        //'paul': {children: []},
-        //'george': {children: []},
-        //'ringo': {children: []},
-        //'johannes': {children: []},
-        //'ruby': {children: []},
-      },
       activeGridItemLevel: undefined,
       activeGridItemIndex: undefined,
       activeGridItemRow: undefined,
@@ -117,7 +105,7 @@ class Grid extends Component {
     return (
       <div className={classes} ref={(div) => this.container = div} style={style}>
         {
-          Object.keys(this.state.grid).map((elm, index) => {
+          Object.keys(this.props.grid).map((elm, index) => {
           return <GridItem
             setActiveGridItemIndex={this.setActiveGridItemIndex}
             resetGrid={this.resetGrid}
@@ -126,7 +114,7 @@ class Grid extends Component {
             route={elm}
             key={index}
             index={index}
-            children={this.state.grid[elm].children}
+            children={this.props.grid[elm].children}
           />
           })
         }
