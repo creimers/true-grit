@@ -82,7 +82,7 @@ export const DATA = {
   }
 }
 
-const getTheme = () => {
+export const getTheme = () => {
   const THEMES = [
     {background: '#02d892', color: '#ba3457'},
     {background: '#623872', color: '#98c587'},
@@ -117,6 +117,6 @@ export const getData = (routeParams) => {
     }
   }
 
-  root.theme = getTheme()
+  //root.theme = getTheme()
   return root
 }

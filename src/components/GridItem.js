@@ -18,7 +18,7 @@ class GridItem extends Component {
     setTimeout(() => {
       this.context.router.push([path, this.props.route].join('/'))
       this.setState({animate: false})
-    }, 500)
+    }, 700)
   }
 
   goToParent(event) {
