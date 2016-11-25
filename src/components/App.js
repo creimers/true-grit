@@ -4,6 +4,7 @@ import './App.css';
 import { getData } from '../data'
 
 import Grid from './Grid'
+import Breadcrumbs from './Breadcrumbs'
 import Container from './Container'
 
 class App extends Component {
@@ -36,7 +37,10 @@ class App extends Component {
     }
     return (
       <div className="App" style={style}>
-        {content}
+        <Breadcrumbs routes={this.context.router.params}/>
+        <div className="content">
+          {content}
+        </div>
       </div>
     );
   }
