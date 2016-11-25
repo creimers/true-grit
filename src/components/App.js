@@ -37,8 +37,8 @@ class App extends Component {
     }
     return (
       <div className="App" style={style}>
-        <Breadcrumbs routes={this.context.router.params}/>
-        <div className="content">
+        <Breadcrumbs color={data.theme.background} background={data.theme.color} routes={this.context.router.params}/>
+        <div className="AppContent">
           {content}
         </div>
       </div>

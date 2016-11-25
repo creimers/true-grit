@@ -1,5 +1,29 @@
 .App {
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.AppContent{
+  overflow-y: scroll;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.Breadcrumbs {
+  height: 100px;
+  line-height: 100px;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.Breadcrumbs > a {
+  padding-right: 15px;
+  text-decoration: none;
 }
 
 .Container{
@@ -16,8 +40,8 @@
   /*margin-top: 50px;*/
   overflow-x: hidden;
   /*transition: all 0.5s;*/
-  max-width: 80vw;
-  margin: 0 auto;
+  /*max-width: 80vw;*/
+  /*margin: 0 auto;*/
 }
 
 .GridItem{
