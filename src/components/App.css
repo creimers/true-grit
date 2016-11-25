@@ -9,7 +9,7 @@
 
   /*margin-top: 50px;*/
   overflow-x: hidden;
-  transition: all 0.5s;
+  /*transition: all 0.5s;*/
   max-width: 80vw;
   margin: 0 auto;
 }

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 
 import GridItem from './GridItem'
 
-import classNames from 'classnames';
-
-
 class Grid extends Component {
 
   constructor(props) {
@@ -148,29 +145,6 @@ class Grid extends Component {
   }
 
   render () {
-    //let zoom = Object.keys(this.context.router.params).length
-
-    //let width = this.calculateWidth()
-    //let transform = this.calculateTransform()
-
-    //let style = {
-      //width: `${width}%`,
-      //transform: `translate(${transform.translateX}, ${transform.translateY})`
-    //}
-
-    //if (zoom){
-      //document.body.classList.add('y')
-    //}
-    //else{
-      //document.body.classList.remove('y')
-    //}
-
-    let classes = classNames(
-      'Grid',
-      //{
-        //zoom: zoom
-      //}
-    ) 
 
     let style = {
       backgroundColor: this.props.theme.background,
@@ -178,7 +152,7 @@ class Grid extends Component {
     }
 
     return (
-      <div className={classes} style={style}>
+      <div className="Grid" style={style}>
         {
           this.props.items.map((elm, index) => {
             return <GridItem

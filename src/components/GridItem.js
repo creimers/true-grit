@@ -5,22 +5,11 @@ import classNames from 'classnames';
 class GridItem extends Component {
 
   routeGridItem(event) {
-    //level 0
-    if (this.props.level === 0) {
-      this.context.router.push(["", this.props.route].join('/'))
-    }
-
-    //level 1 and parent not active
-    else if(this.props.level === 1 && this.context.router.params['level0'] !== this.props.parent) {
-      console.log('click on child of unactive parnet')
-      this.context.router.push(["", this.props.parent].join('/'))
-    }
-
-    // level 1 and parent active
-    else if(this.props.level === 1 && this.context.router.params['level0'] === this.props.parent) {
-      this.context.router.push(["", this.props.parent, this.props.route].join('/'))
-    }
     event.stopPropagation();
+    let currentPath = this.context.router.getCurrentLocation().pathname 
+    let path = currentPath !== "/" ? currentPath : ''
+
+    this.context.router.push([path, this.props.route].join('/'))
   }
 
   goToParent(event) {
