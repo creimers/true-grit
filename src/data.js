@@ -64,7 +64,20 @@ export const DATA = {
             id: 'charlie'
           }
         ]
-      }
+  },
+  {
+    id: 'daft-punk',
+    children: [
+      {
+        id: 'Guy-Manuel',
+        content: 'Guillaume Emmanuel "Guy-Manuel" de Homem-Christo is a French musician'
+  },
+  {
+    id: 'Thomas Bangalter',
+    content: 'Thomas Bangalter is a French musician, record producer, singer, songwriter, DJ, composer and film director'
+  }
+    ]
+  }
     ]
   }
 }

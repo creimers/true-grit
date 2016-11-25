@@ -4,6 +4,7 @@ import './App.css';
 import { getData } from '../data'
 
 import Grid from './Grid'
+import Container from './Container'
 
 class App extends Component {
   constructor(props) {
@@ -17,22 +18,25 @@ class App extends Component {
 
   render() {
     let data = this.getData()
-    console.log('render')
-    let grid
+
+    let content
     let style
-    if (data.theme) {
-      grid = <Grid theme={data.theme} items={data.children}/>
+
+    if (data.children) {
+      content = <Grid theme={data.theme} items={data.children}/>
       style = {
         backgroundColor: data.theme.background
       }
     }
     else {
-      grid = <div>Loading...</div>
-      style = {}
+      content = <Container theme={data.theme}><div>{data.content}</div></Container>
+      style = {
+        backgroundColor: data.theme.background
+      }
     }
     return (
       <div className="App" style={style}>
-        {grid}
+        {content}
       </div>
     );
   }

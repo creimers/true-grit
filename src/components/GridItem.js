@@ -4,12 +4,21 @@ import classNames from 'classnames';
 
 class GridItem extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {animate: false}
+  }
+
   routeGridItem(event) {
     event.stopPropagation();
+    this.setState({animate: true})
     let currentPath = this.context.router.getCurrentLocation().pathname 
     let path = currentPath !== "/" ? currentPath : ''
 
-    this.context.router.push([path, this.props.route].join('/'))
+    setTimeout(() => {
+      this.context.router.push([path, this.props.route].join('/'))
+      this.setState({animate: false})
+    }, 500)
   }
 
   goToParent(event) {
@@ -22,7 +31,10 @@ class GridItem extends Component {
 
     let classes = classNames(
       'GridItem',
-      {active: active}
+      {
+        active: active,
+        animate: this.state.animate
+      }
     )
 
     let backButton
