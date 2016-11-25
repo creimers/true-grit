@@ -9,21 +9,23 @@
 
   /*margin-top: 50px;*/
   overflow-x: hidden;
-  transition: all 0.5s;
+  /*transition: all 0.5s;*/
+  /*transition-delay: 1s;*/
 }
 
 .GridItem{
   cursor: pointer;
   position: relative;
-  transition: all 0.5s ease-in-out;
+  /*transition: all 0.7s;*/
+  /*transition-delay: all 0.3s;*/
 
-  margin: 5px;
+  /*margin: 5px;*/
   color: black;
   text-transform: uppercase;
-  width: calc(50% - 10px);
-  height: 500px;
+  width: 50%;
+  height: 50vh;
   box-sizing: border-box;
-  border: 2px solid black;
+  border: 1px solid black;
   background-color: white;
 
   display: flex;
@@ -39,6 +41,7 @@
 .GridItem > header{
   display: flex;
   flex-shrink: 0;
+  height: 100px;
 }
 
 .GridItem > header > .title{
