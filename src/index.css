@@ -2,10 +2,11 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  overflow-x: hidden;
+  height: 100vh;
+  min-height: 100vh;
 }
 
-body.y, html.y{
+#root{
   height: 100vh;
-  overflow-y: hidden;
+  min-height: 100vh;
 }

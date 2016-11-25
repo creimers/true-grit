@@ -1,46 +1,47 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import { getData } from '../data'
+
 import Grid from './Grid'
 
 class App extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
-      grid: [
-        {
-          route: 'john',
-          index: 0,
-          children: [{route: 'walrus', index: 0}, {route: 'nowhere man', index: 1}, {route: 'help', index: 2}, {route: 'imagine', index: 3}]
-        },
-        {
-          route: 'paul',
-          index: 1,
-          children: [{route: 'yesterday', index: 0}, {route: 'black bird', index: 1}]
-        },
-        {
-          route: 'ringo',
-          index: 2,
-          children: [{route: 'yellow submarine', index: 0}, {route: 'boys', index: 1}]
-        },
-        {
-          route: 'george',
-          index: 3,
-          children: [{route: 'yellow submarine', index: 0}, {route: 'boys', index: 1}]
-        }
-      ]
-
+      data: undefined
     }
   }
 
+  componentDidMount() {
+    this.setState({
+      data: getData(this.context.router.params)
+    })
+  }
+
   render() {
+    let grid
+    let style
+    if (this.state.data) {
+      grid = <Grid theme={this.state.data.theme} items={this.state.data.children}/>
+      style = {
+        backgroundColor: this.state.data.theme.background
+      }
+    }
+    else {
+      grid = <div>Loading...</div>
+      style = {}
+    }
     return (
-      <div>
-        <Grid grid={this.state.grid}/>
+      <div className="App" style={style}>
+        {grid}
       </div>
     );
   }
+}
+
+App.contextTypes = {
+  router: React.PropTypes.object
 }
 
 export default App;

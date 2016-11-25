@@ -148,40 +148,45 @@ class Grid extends Component {
   }
 
   render () {
-    let zoom = Object.keys(this.context.router.params).length
+    //let zoom = Object.keys(this.context.router.params).length
 
-    let width = this.calculateWidth()
-    let transform = this.calculateTransform()
+    //let width = this.calculateWidth()
+    //let transform = this.calculateTransform()
 
-    let style = {
-      width: `${width}%`,
-      transform: `translate(${transform.translateX}, ${transform.translateY})`
-    }
+    //let style = {
+      //width: `${width}%`,
+      //transform: `translate(${transform.translateX}, ${transform.translateY})`
+    //}
 
-    if (zoom){
-      document.body.classList.add('y')
-    }
-    else{
-      document.body.classList.remove('y')
-    }
+    //if (zoom){
+      //document.body.classList.add('y')
+    //}
+    //else{
+      //document.body.classList.remove('y')
+    //}
 
     let classes = classNames(
       'Grid',
-      {
-        zoom: zoom
-      }
+      //{
+        //zoom: zoom
+      //}
     ) 
 
+    let style = {
+      backgroundColor: this.props.theme.background,
+      color: this.props.theme.color
+    }
+
     return (
-      <div className={classes} ref={(div) => this.container = div} style={style}>
+      <div className={classes} style={style}>
         {
-          this.props.grid.map((elm, index) => {
+          this.props.items.map((elm, index) => {
             return <GridItem
-              level={0}
-              parent=""
-              route={elm.route}
+              route={elm.id}
               key={index}
               children={elm.children}
+              background={this.props.theme.color}
+              color={this.props.theme.background}
             />
           })
         }

@@ -12,6 +12,7 @@ ReactDOM.render((
 
       <Route path="/:level0" component={App}/>
       <Route path="/:level0/:level1" component={App}/>
+      <Route path="/:level0/:level1/:level2" component={App}/>
     </Route>
   </Router>
 ), document.getElementById('root'))

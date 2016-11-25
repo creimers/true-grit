@@ -44,30 +44,42 @@ class GridItem extends Component {
       backButton = <span></span>
     }
 
+    let children
+    if (this.props.children) {
+      children = this.props.children.map((elm, index) => {
+        return (
+          <GridItem
+            level={1}
+            key={index}
+            parent={this.props.route}
+            route={elm.route}
+            children={[]}
+          />
+        )
+      })
+    }
+
+    else {
+      children = <span></span>
+    }
+
+    let style = {
+      backgroundColor: this.props.background,
+      color: this.props.color
+    }
+
     return (
 
-      <div className={classes} onClick={this.routeGridItem.bind(this)}>
+      <div className={classes} onClick={this.routeGridItem.bind(this)} style={style}>
 
         <header>
           <div className="title">
             <h2>{this.props.route}</h2>
           </div>
-          {backButton}
         </header>
 
         <div className="GridItemInner">
 
-          {this.props.children.map((elm, index)=> {
-            return (
-            <GridItem
-              level={1}
-              key={index}
-              parent={this.props.route}
-              route={elm.route}
-              children={[]}
-            />
-            )
-          })}
 
         </div>
 
