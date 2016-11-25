@@ -49,6 +49,11 @@
   /*margin: 0 auto;*/
 }
 
+.Grid:after {
+  content: "";
+  flex: auto;
+}
+
 .GridItem{
   cursor: pointer;
   position: relative;
@@ -74,8 +79,14 @@
 
 .GridItem.animate {
   transition: all 0.5s ease-in-out;
-  transform: scale(4);
+  transform: scale(6);
   z-index: 10000;
+
+  /*justify-content: flex-start;*/
+}
+
+.GridItem.animate > header{
+  display: none;
 }
 
 .GridItem > header{
