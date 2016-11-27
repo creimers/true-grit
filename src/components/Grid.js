@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import GridItem from './GridItem'
 
+import './Grid.css'
+
+
 class Grid extends Component {
 
   constructor(props) {

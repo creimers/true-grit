@@ -10,7 +10,7 @@ import Introduction from './Introduction'
 import Title from './Title'
 //import Breadcrumbs from './Breadcrumbs'
 import Container from './Container'
-import CSSTransitionGroup from 'react-addons-css-transition-group'
+//import CSSTransitionGroup from 'react-addons-css-transition-group'
 
 
 class App extends Component {
