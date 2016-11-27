@@ -12,6 +12,12 @@
   flex-direction: column;
 }
 
+
+.AppContent.scaledown {
+  transition: all 0.5s;
+  transform: scale(.4);
+}
+
 .Breadcrumbs {
   padding-left: 15px;
   height: 100px;

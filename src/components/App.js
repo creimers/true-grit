@@ -3,6 +3,7 @@ import './App.css';
 
 import { getData, getTheme } from '../data'
 
+import classNames from 'classnames';
 import Backbutton from './Backbutton'
 import Grid from './Grid'
 import Introduction from './Introduction'
@@ -19,7 +20,10 @@ class App extends Component {
     this.getThemeForRoute = this.getThemeForRoute.bind(this)
     this.goBack = this.goBack.bind(this)
 
-    this.state = {theme: getTheme()}
+    this.state = {
+      theme: getTheme(),
+      scaleDown: false
+    }
   }
 
   getData() {
@@ -41,7 +45,11 @@ class App extends Component {
     let paramKeys = Object.keys(this.context.router.params)
     let levelUpKeys = paramKeys.slice(0, paramKeys.length - 1)
     let upRoutes = levelUpKeys.map(elm => this.context.router.params[elm])
-    this.context.router.push('/' + upRoutes.join('/'))
+    this.setState({scaleDown: true})
+    setTimeout(() => {
+      this.context.router.push('/' + upRoutes.join('/'))
+      this.setState({scaleDown: false})
+    }, 500)
   }
 
   render() {
@@ -63,10 +71,17 @@ class App extends Component {
         backgroundColor: theme.background
       }
     }
+
+    let classes = classNames(
+      'AppContent',
+      {
+        scaledown: this.state.scaleDown
+      }
+    )
     //let breadcrumbs = <Breadcrumbs color={theme.background} background={theme.color} routes={this.context.router.params}/>
     return (
       <div className="App" style={style}>
-        <div className="AppContent">
+        <div className={classes}>
           <Backbutton color={theme.color} goBack={this.goBack} showButton={Object.keys(this.context.router.params).length}/>
           <Title title={data.id} style={style} color={theme.color}/>
           <Introduction color={theme.color}/>
