@@ -3,15 +3,21 @@ import './App.css';
 
 import { getData, getTheme } from '../data'
 
+import Backbutton from './Backbutton'
 import Grid from './Grid'
+import Introduction from './Introduction'
+import Title from './Title'
 //import Breadcrumbs from './Breadcrumbs'
 import Container from './Container'
+import CSSTransitionGroup from 'react-addons-css-transition-group'
+
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.getData = this.getData.bind(this)
     this.getThemeForRoute = this.getThemeForRoute.bind(this)
+    this.goBack = this.goBack.bind(this)
 
     this.state = {theme: getTheme()}
   }
@@ -31,10 +37,16 @@ class App extends Component {
     }
   }
 
+  goBack() {
+    let paramKeys = Object.keys(this.context.router.params)
+    let levelUpKeys = paramKeys.slice(0, paramKeys.length - 1)
+    let upRoutes = levelUpKeys.map(elm => this.context.router.params[elm])
+    this.context.router.push('/' + upRoutes.join('/'))
+  }
+
   render() {
     let data = this.getData()
     let theme = this.getThemeForRoute()
-    console.log(theme)
 
     let content
     let style
@@ -55,6 +67,9 @@ class App extends Component {
     return (
       <div className="App" style={style}>
         <div className="AppContent">
+          <Backbutton color={theme.color} goBack={this.goBack} showButton={Object.keys(this.context.router.params).length}/>
+          <Title title={data.id} style={style} color={theme.color}/>
+          <Introduction color={theme.color}/>
           {content}
         </div>
       </div>

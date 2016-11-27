@@ -1,0 +1,10 @@
+.Backbutton {
+  display: flex;
+  justify-content: flex-end;
+  padding-top:15px;
+  padding-right:15px;
+}
+
+.Backbutton > span {
+  cursor: pointer;
+}

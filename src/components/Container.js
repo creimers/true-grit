@@ -8,7 +8,7 @@ class Container extends Component {
       color: this.props.theme.color
     }
     return (
-      <div className="Container" style={style}>
+      <div className="container" style={style}>
         {this.props.children}
       </div>
     )

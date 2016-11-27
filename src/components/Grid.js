@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import CSSTransitionGroup from 'react-addons-css-transition-group'
-
 import GridItem from './GridItem'
 
 class Grid extends Component {
@@ -31,16 +29,9 @@ class Grid extends Component {
     }
 
     return (
-        <CSSTransitionGroup
-          component="div"
-          style={style}
-          className="Grid"
-          transitionName="GridItem"
-          transitionEnterTimeout={5000}
-          transitionLeaveTimeout={100}
-        >
-          {this.props.items.map((elm, index) => this.renderGridElement(elm, index))}
-        </CSSTransitionGroup>
+      <div className="Grid" style={style}>
+        {this.props.items.map((elm, index) => this.renderGridElement(elm, index))}
+      </div>
     )
   }
 }
