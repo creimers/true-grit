@@ -4,7 +4,7 @@ import './App.css';
 import { getData, getTheme } from '../data'
 
 import Grid from './Grid'
-import Breadcrumbs from './Breadcrumbs'
+//import Breadcrumbs from './Breadcrumbs'
 import Container from './Container'
 
 class App extends Component {
@@ -51,7 +51,7 @@ class App extends Component {
         backgroundColor: theme.background
       }
     }
-    let breadcrumbs = <Breadcrumbs color={theme.background} background={theme.color} routes={this.context.router.params}/>
+    //let breadcrumbs = <Breadcrumbs color={theme.background} background={theme.color} routes={this.context.router.params}/>
     return (
       <div className="App" style={style}>
         <div className="AppContent">

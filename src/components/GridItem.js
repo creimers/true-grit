@@ -37,32 +37,32 @@ class GridItem extends Component {
       }
     )
 
-    let backButton
-    if (active) {
-      backButton = <span onClick={this.goToParent.bind(this)}>X</span>
-    }
-    else {
-      backButton = <span></span>
-    }
+    //let backButton
+    //if (active) {
+      //backButton = <span onClick={this.goToParent.bind(this)}>X</span>
+    //}
+    //else {
+      //backButton = <span></span>
+    //}
 
-    let children
-    if (this.props.children) {
-      children = this.props.children.map((elm, index) => {
-        return (
-          <GridItem
-            level={1}
-            key={index}
-            parent={this.props.route}
-            route={elm.route}
-            children={[]}
-          />
-        )
-      })
-    }
+    //let children
+    //if (this.props.children) {
+      //children = this.props.children.map((elm, index) => {
+        //return (
+          //<GridItem
+            //level={1}
+            //key={index}
+            //parent={this.props.route}
+            //route={elm.route}
+            //children={[]}
+          ///>
+        //)
+      //})
+    //}
 
-    else {
-      children = <span></span>
-    }
+    //else {
+      //children = <span></span>
+    //}
 
     let style = {
       backgroundColor: this.props.background,
