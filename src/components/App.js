@@ -46,10 +46,13 @@ class App extends Component {
     let levelUpKeys = paramKeys.slice(0, paramKeys.length - 1)
     let upRoutes = levelUpKeys.map(elm => this.context.router.params[elm])
     this.setState({scaleDown: true})
+
     setTimeout(() => {
-      this.context.router.push('/' + upRoutes.join('/'))
+      //debugger
       this.setState({scaleDown: false})
-    }, 500)
+      this.context.router.push('/' + upRoutes.join('/'))
+    }, 700)
+
   }
 
   render() {
@@ -57,19 +60,21 @@ class App extends Component {
     let theme = this.getThemeForRoute()
 
     let content
-    let style
 
+    let style = {
+      backgroundColor: theme.background
+    }
+
+    let styleReverse = {
+      backgroundColor: theme.color
+    }
+
+    // TODO -> renderContent
     if (data.children) {
       content = <Grid theme={theme} items={data.children}/>
-      style = {
-        backgroundColor: theme.background
-      }
     }
     else {
       content = <Container theme={theme}><div>{data.content}</div></Container>
-      style = {
-        backgroundColor: theme.background
-      }
     }
 
     let classes = classNames(
@@ -80,8 +85,8 @@ class App extends Component {
     )
     //let breadcrumbs = <Breadcrumbs color={theme.background} background={theme.color} routes={this.context.router.params}/>
     return (
-      <div className="App" style={style}>
-        <div className={classes}>
+      <div className="App" style={styleReverse}>
+        <div className={classes} style={style}>
           <Backbutton color={theme.color} goBack={this.goBack} showButton={Object.keys(this.context.router.params).length}/>
           <Title title={data.id} style={style} color={theme.color}/>
           <Introduction color={theme.color}/>

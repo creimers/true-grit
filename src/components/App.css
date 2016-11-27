@@ -14,8 +14,8 @@
 
 
 .AppContent.scaledown {
-  transition: all 0.5s;
-  transform: scale(.4);
+  transition: all 0.7s ease-in-out;
+  transform: scale(.02);
 }
 
 .Breadcrumbs {
@@ -79,7 +79,7 @@
 
 .GridItem.animate {
   transition: all 0.7s ease-in-out;
-  transform: scale(6);
+  transform: scale(10);
   z-index: 10000;
 
   /*justify-content: flex-start;*/
