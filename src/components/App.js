@@ -47,21 +47,22 @@ class App extends Component {
   }
 
   goBack() {
-    let paramKeys = Object.keys(this.context.router.params)
-    let levelUpKeys = paramKeys.slice(0, paramKeys.length - 1)
-    let upRoutes = levelUpKeys.map(elm => this.context.router.params[elm])
+    //let paramKeys = Object.keys(this.context.router.params)
+    //debugger
+    //let levelUpKeys = paramKeys.slice(0, paramKeys.length - 1)
+    //let upRoutes = levelUpKeys.map(elm => this.context.router.params[elm])
     this.setState({scaleDown: true})
 
     setTimeout(() => {
       //debugger
       this.setState({scaleDown: false})
-      this.context.router.push('/' + upRoutes.join('/'))
+      this.context.router.goBack()
+      //this.context.router.push('/' + upRoutes.join('/'))
     }, 700)
 
   }
 
   render() {
-    //let data = this.getData()
     let theme = this.getThemeForRoute()
 
     let content
@@ -90,11 +91,10 @@ class App extends Component {
       }
     )
     //let breadcrumbs = <Breadcrumbs color={theme.background} background={theme.color} routes={this.context.router.params}/>
-    //console.log(this.props.pages)
     return (
       <div className="App" style={styleReverse}>
         <div className={classes} style={style}>
-          <Backbutton color={theme.color} goBack={this.goBack} showButton={Object.keys(this.context.router.params).length}/>
+          <Backbutton color={theme.color} goBack={this.goBack} showButton={this.context.router.location.pathname !== '/'}/>
           <Title title={this.props.currentPage.title} style={style} color={theme.color}/>
           {content}
         </div>

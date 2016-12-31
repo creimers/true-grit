@@ -12,10 +12,7 @@ import store, { history } from './store'
 ReactDOM.render((
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={AppContainer}>
-        <Route path="/:level0" component={AppContainer}/>
-        <Route path="/:level0/:level1" component={AppContainer}/>
-        <Route path="/:level0/:level1/:level2" component={AppContainer}/>
+      <Route path="/*" component={AppContainer}>
       </Route>
     </Router>
   </Provider>
