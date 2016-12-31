@@ -1,18 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route } from 'react-router'
+import { Provider  } from 'react-redux';
 
-import App from './components/App';
+import AppContainer from './containers/AppContainer';
 
 import './index.css';
+import store, { history } from './store'
+
 
 ReactDOM.render((
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-
-      <Route path="/:level0" component={App}/>
-      <Route path="/:level0/:level1" component={App}/>
-      <Route path="/:level0/:level1/:level2" component={App}/>
-    </Route>
-  </Router>
+  <Provider store={store}>
+    <Router history={history}>
+      <Route path="/" component={AppContainer}>
+        <Route path="/:level0" component={AppContainer}/>
+        <Route path="/:level0/:level1" component={AppContainer}/>
+        <Route path="/:level0/:level1/:level2" component={AppContainer}/>
+      </Route>
+    </Router>
+  </Provider>
 ), document.getElementById('root'))
