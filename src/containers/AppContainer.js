@@ -5,7 +5,7 @@ import * as actionCreators from '../actions/actionCreators';
 import App from '../components/App'
 
 const findPageOfSlug = (pageList, slug) => {
-  return pageList.find((page) => page.absolute_url === slug)
+  return pageList.find((page) => page.absolute_url === slug || page.absolute_url === slug + '/')
 }
 
 const findChildrenOfCurrentPage = (pageList, currentPage) => {
@@ -16,6 +16,7 @@ const findChildrenOfCurrentPage = (pageList, currentPage) => {
 
 const mapStateToProps = (state) => {
   const currentSlug = state.routing.locationBeforeTransitions.pathname
+  console.log('current slug ', currentSlug)
   const currentPage = findPageOfSlug(state.pages.pageList, currentSlug) || {}
 
   let mappedState = {currentPage}

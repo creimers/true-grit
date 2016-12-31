@@ -13,13 +13,11 @@ class GridItem extends Component {
 
   routeGridItem(event) {
     event.stopPropagation();
-    //this.setState({animate: true})
-    let currentPath = this.context.router.getCurrentLocation().pathname 
-    //let path = currentPath !== "/" ? currentPath : ''
+    this.setState({animate: true})
 
     setTimeout(() => {
       this.context.router.push(this.props.route)
-      //this.setState({animate: false})
+      this.setState({animate: false})
     }, 700)
   }
 

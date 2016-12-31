@@ -91,8 +91,6 @@ class App extends Component {
     )
     //let breadcrumbs = <Breadcrumbs color={theme.background} background={theme.color} routes={this.context.router.params}/>
     //console.log(this.props.pages)
-    console.log('current page: ', this.props.currentPage)
-    console.log('children: ', this.props.children)
     return (
       <div className="App" style={styleReverse}>
         <div className={classes} style={style}>

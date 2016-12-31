@@ -85,14 +85,14 @@ export const DATA = {
 export const getTheme = () => {
   const THEMES = [
     {background: '#02d892', color: '#ba3457'},
-    {background: '#623872', color: '#98c587'},
-    {background: '#d08942', color: '#0041b6'},
-    {background: '#72ffe5', color: '#8f0f1e'},
-    {background: '#084be0', color: '#f2b124'},
-    {background: '#3b6b35', color: '#29001d'},
-    {background: '#aa64d4', color: '#393939'},
-    {background: '#7990bd', color: '#fffc9c'},
-    {background: '#662ac3', color: '#98d23f'}
+    //{background: '#623872', color: '#98c587'},
+    //{background: '#d08942', color: '#0041b6'},
+    //{background: '#72ffe5', color: '#8f0f1e'},
+    //{background: '#084be0', color: '#f2b124'},
+    //{background: '#3b6b35', color: '#29001d'},
+    //{background: '#aa64d4', color: '#393939'},
+    //{background: '#7990bd', color: '#fffc9c'},
+    //{background: '#662ac3', color: '#98d23f'}
   ]
 
   return THEMES[Math.floor(Math.random() * THEMES.length)] 
