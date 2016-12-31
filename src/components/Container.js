@@ -3,15 +3,16 @@ import React, { Component } from 'react';
 
 class Container extends Component {
   render() {
-    let style = {
-      backgroundColor: this.props.theme.background,
-      color: this.props.theme.color
-    }
-    return (
-      <div className="container" style={style}>
-        {this.props.children}
+    const Iframe=this.props.iframe;
+
+    return(
+
+      <div>
+
+        <Iframe className="iframe" src={this.props.src} height={this.props.height} width={this.props.width}/>
+
       </div>
-    )
+      )
   }
 }
 

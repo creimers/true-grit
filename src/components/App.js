@@ -75,11 +75,12 @@ class App extends Component {
     }
 
     // TODO -> renderContent
-    if (this.props.children) {
+    if (this.props.children.length) {
       content = <Grid theme={theme} items={this.props.children}/>
     }
     else {
-      content = <Container theme={theme}><div>'AFFE'</div></Container>
+      let iframeSrc = 'http://localhost:8000' + this.props.currentPage.absolute_url
+      content = <Container iframe='iframe' theme={theme} src={iframeSrc} width={200} height={200}/>
     }
 
     let classes = classNames(
@@ -96,8 +97,7 @@ class App extends Component {
       <div className="App" style={styleReverse}>
         <div className={classes} style={style}>
           <Backbutton color={theme.color} goBack={this.goBack} showButton={Object.keys(this.context.router.params).length}/>
-          <Title title={'Affe'} style={style} color={theme.color}/>
-          <Introduction color={theme.color}/>
+          <Title title={this.props.currentPage.title} style={style} color={theme.color}/>
           {content}
         </div>
       </div>

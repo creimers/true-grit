@@ -16,11 +16,11 @@ const findChildrenOfCurrentPage = (pageList, currentPage) => {
 
 const mapStateToProps = (state) => {
   const currentSlug = state.routing.locationBeforeTransitions.pathname
-  const currentPage = findPageOfSlug(state.pages.pageList, currentSlug)
+  const currentPage = findPageOfSlug(state.pages.pageList, currentSlug) || {}
 
   let mappedState = {currentPage}
 
-  if(currentPage) {
+  if(currentPage.id) {
     const children = findChildrenOfCurrentPage(state.pages.pageList, currentPage)
     mappedState.children = children
   }
