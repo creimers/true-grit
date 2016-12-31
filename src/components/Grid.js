@@ -15,7 +15,8 @@ class Grid extends Component {
   renderGridElement(elm, index) {
     return (
       <GridItem
-        route={elm.id}
+        route={elm.absolute_url}
+        title={elm.title}
         key={index}
         children={elm.children}
         background={this.props.theme.color}

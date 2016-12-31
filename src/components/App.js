@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { getData, getTheme } from '../data'
+import { getTheme } from '../data'
 
 import classNames from 'classnames';
 import Backbutton from './Backbutton'
@@ -16,7 +16,7 @@ import Container from './Container'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.getData = this.getData.bind(this)
+    //this.getData = this.getData.bind(this)
     this.getThemeForRoute = this.getThemeForRoute.bind(this)
     this.goBack = this.goBack.bind(this)
 
@@ -26,9 +26,14 @@ class App extends Component {
     }
   }
 
-  getData() {
-    return getData(this.context.router.params)
+  componentDidMount() {
+    // TODO: only if no pages or now > last fetched + x hours
+    this.props.fetchPages()
   }
+
+  //getData() {
+    //return getData(this.context.router.params)
+  //}
 
   getThemeForRoute() {
     let evenRoute = Object.keys(this.context.router.params).length % 2 === 0
@@ -56,7 +61,7 @@ class App extends Component {
   }
 
   render() {
-    let data = this.getData()
+    //let data = this.getData()
     let theme = this.getThemeForRoute()
 
     let content
@@ -70,11 +75,11 @@ class App extends Component {
     }
 
     // TODO -> renderContent
-    if (data.children) {
-      content = <Grid theme={theme} items={data.children}/>
+    if (this.props.children) {
+      content = <Grid theme={theme} items={this.props.children}/>
     }
     else {
-      content = <Container theme={theme}><div>{data.content}</div></Container>
+      content = <Container theme={theme}><div>'AFFE'</div></Container>
     }
 
     let classes = classNames(
@@ -84,11 +89,14 @@ class App extends Component {
       }
     )
     //let breadcrumbs = <Breadcrumbs color={theme.background} background={theme.color} routes={this.context.router.params}/>
+    //console.log(this.props.pages)
+    console.log('current page: ', this.props.currentPage)
+    console.log('children: ', this.props.children)
     return (
       <div className="App" style={styleReverse}>
         <div className={classes} style={style}>
           <Backbutton color={theme.color} goBack={this.goBack} showButton={Object.keys(this.context.router.params).length}/>
-          <Title title={data.id} style={style} color={theme.color}/>
+          <Title title={'Affe'} style={style} color={theme.color}/>
           <Introduction color={theme.color}/>
           {content}
         </div>
